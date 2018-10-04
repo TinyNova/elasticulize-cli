@@ -1,0 +1,37 @@
+{
+  "name": "elasticulize-cli",
+  "version": "1.0.0",
+  "description": "Elasticsearch client for delpoyment and migrations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./lib/elasticulize.js"
+  },
+  "bin": {
+    "elasticulize": "./bin/elasticulize"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TinyNova/elasticulize-cli.git"
+  },
+  "keywords": [
+    "elasticsearch",
+    "sequelize",
+    "migration",
+    "deployment"
+  ],
+  "author": "Britton Mathews <britton.mathews@backit.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TinyNova/elasticulize-cli/issues"
+  },
+  "homepage": "https://github.com/TinyNova/elasticulize-cli#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "elasticsearch": "^15.1.1",
+    "lodash": "^4.17.11",
+    "minimist": "^1.2.0",
+    "moment": "^2.22.2",
+    "yargs": "^12.0.2"
+  }
+}

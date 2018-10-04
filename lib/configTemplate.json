@@ -1,0 +1,11 @@
+{
+  "development": {
+    "host": "http://localhost:9200"
+  },
+  "test": {
+    "host": ""
+  },
+  "production": {
+    "host": ""
+  }
+}

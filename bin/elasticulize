@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+const _ = require('lodash');
+const fs = require('fs');
+const path = require('path');
+const minimist = require('minimist');
+const Commands = require('../lib/commands')
+
+function loadRCFile(optionsPath) {
+    const rcFile = optionsPath || path.resolve(process.cwd(), '.elasticulizerc');
+    const rcFileResolved = path.resolve(rcFile);
+    return fs.existsSync(rcFileResolved)
+        ? JSON.parse(JSON.stringify(require(rcFileResolved)))
+        : {};
+}
+
+const argv = minimist(process.argv.slice(2));
+const command = _.get(argv, '_[0]');
+const client = new Commands(loadRCFile());
+client._init().then(async () => {
+    if (!client[command]) {
+        console.log(`${command} is not a valid command`);
+        return;
+    }
+    await client[command].call(client, argv);
+});
