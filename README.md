@@ -91,6 +91,8 @@ The `.elasticulize` file contains file references for the client. You can move/r
 
 This file should remain in your root folder. All commands should be performed in your root folder where this file resides.
 
+Elasticulize will use `process.env.NODE_ENV` to determine which handle in your config file to load. It defaults to 'development'.
+
 ### cluster:migrate
 Runs all migrations from the current version of the cluster. Will create an index called `version` to store the current state of the cluster if it doesnt exist.
 

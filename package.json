@@ -1,6 +1,6 @@
 {
   "name": "elasticulize-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Elasticsearch client for delpoyment and migrations",
   "main": "index.js",
   "scripts": {
