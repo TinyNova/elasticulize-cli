@@ -3,7 +3,7 @@
 Elasticulize is a command line tool to help automate deployment changes to your elasticsearch cluster. It closely follows the same patterns set by ["Sequelize"](https://github.com/sequelize/cli) a nodejs ORM.
 
 ## Installation
----
+
 ### Globally
 
 Dillinger requires [Node.js](https://nodejs.org/) v8.0+ to run.
@@ -50,10 +50,14 @@ Will build out initial files and folders needed to run migrations.
 
 The `.elasticulize` file contains file references for the client. You can move/rename the config or migrations folder. If you do, update the .elasticulize file to point to the new correct paths/names.
 
+This file should remain in your root folder. All commands should be performed in your root folder where this file resides.
+
 ### cluster:migrate
 Runs all migrations from the current version of the cluster. Will create an index called `version` to store the current state of the cluster if it doesnt exist.
 
 **!NOTE!**  *Migrations are non transactional. If your migration fails half way through, you can end up in a bad state which not only sucks, it is sometimes very hard to correct. This is a limitation due to the nature of elasticsearch not having transactional functionality like a relational database.*
+
+It is better to have more small migrations (perferably only performing a single task) than a migration that does lots.
 
 ### cluster:migrate:undo
 Rolls back a single migration. Unlike `cluster:migrate` which will run all migrations needed to put the cluster at the current version, `cluster:migrate:undo` only rolls back a single version from the current version on the cluster.
@@ -65,8 +69,9 @@ Creates a template for a new migration. Using the `--name` parameter will suffix
 Migrations can be sync or async. If you need to perform an async task, the function must return a promise.
 example:
 
+
 ***20180929121903-create-users-index.js***
-Up/Down expect a promise returned if performing an async task. Since client.indices.create/delete return a promise, so for ease of use, just return that.
+Here is an example of a migration that creates an index. A client is passed to you function. Up/Down expect a promise returned if performing an async task. Since client.indices.create/delete return a promise, so for ease of use, just return that.
 ```javascript
 'use strict';
 module.exports = {
