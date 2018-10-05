@@ -2,11 +2,50 @@
 
 Elasticulize is a command line tool to help automate deployment changes to your elasticsearch cluster. It closely follows the same patterns set by ["Sequelize"](https://github.com/sequelize/cli) a nodejs ORM.
 
+### What is the problem Elasticulize solves?
+
+In a true CI pipeline, everything should be automated. This includes upgrades to your data stores such as a relational database or in this case an elasticsearch cluster. You want to upgrade the data store at the time you also release new code.
+
+You can make this client part of your release process. Run `cluster:migrate` and it will attempt to run any upgrades everytime you release. If it is already at the latest version, nothing will happen.
+
+If you use Circle CI, for example as your CI pipeline, your config might look something like this
+
+```yaml
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run:
+          name: Upgrade Database
+          command: |
+            sequelize db:migrate
+            sequelize db:seed:all
+      - run:
+          name: Upgrade Elastic Search Cluster
+          command: |
+            elasticulize:migrate
+  test:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: <command>
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+```
+
 ## Installation
 
 ### Globally
 
-Dillinger requires [Node.js](https://nodejs.org/) v8.0+ to run.
+Elasticulize requires [Node.js](https://nodejs.org/) v8.0+ to run.
 
 Install CLI globally with
 
