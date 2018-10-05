@@ -67,11 +67,10 @@ Rolls back a single migration. Unlike `cluster:migrate` which will run all migra
 Creates a template for a new migration. Using the `--name` parameter will suffix the file with that value of the parameter. This is used for your sanity when looking at a folder of migrations.
 
 Migrations can be sync or async. If you need to perform an async task, the function must return a promise.
-example:
 
+example: ***20180929121903-create-users-index.js***
 
-***20180929121903-create-users-index.js***
-Here is an example of a migration that creates an index. A client is passed to you function. Up/Down expect a promise returned if performing an async task. Since client.indices.create/delete return a promise, so for ease of use, just return that.
+Here is an example of a migration that creates an index. A client is passed to your function. Up/Down expect a promise returned if performing an async task. The methods `client.indices.create/delete` return a promise.
 ```javascript
 'use strict';
 module.exports = {
