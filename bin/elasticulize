@@ -16,7 +16,7 @@ function loadRCFile(optionsPath) {
 const argv = minimist(process.argv.slice(2));
 const command = _.get(argv, '_[0]');
 const client = new Commands(loadRCFile());
-client._init().then(async () => {
+client._init(_.get(argv, 'env')).then(async () => {
     if (!client[command]) {
         console.log(`${command} is not a valid command`);
         return;
