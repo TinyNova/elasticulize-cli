@@ -91,9 +91,10 @@ The `.elasticulize` file contains file references for the client. You can move/r
 
 This file should remain in your root folder. All commands should be performed in your root folder where this file resides.
 
-Elasticulize will use `process.env.NODE_ENV` to determine which handle in your config file to load. It defaults to 'development'.
+Elasticulize will use `process.env.NODE_ENV` to determine which handle in your config file to load. It defaults to 'development'. Alternatively, you can use the `--env` argument to pass a handle when executing migrations.
 
 ### cluster:migrate
+(Optional): `--env environment-name`
 Runs all migrations from the current version of the cluster. Will create an index called `version` to store the current state of the cluster if it doesnt exist.
 
 **!NOTE!**  *Migrations are non transactional. If your migration fails half way through, you can end up in a bad state which not only sucks, it is sometimes very hard to correct. This is a limitation due to the nature of elasticsearch not having transactional functionality like a relational database.*
@@ -101,6 +102,7 @@ Runs all migrations from the current version of the cluster. Will create an inde
 It is better to have more small migrations (perferably only performing a single task) than a migration that does lots.
 
 ### cluster:migrate:undo
+(Optional): `--env environment-name`
 Rolls back a single migration. Unlike `cluster:migrate` which will run all migrations needed to put the cluster at the current version, `cluster:migrate:undo` only rolls back a single version from the current version on the cluster.
 
 ### cluster:migrate:create
