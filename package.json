@@ -1,6 +1,6 @@
 {
   "name": "elasticulize-cli",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Elasticsearch client for delpoyment and migrations",
   "main": "index.js",
   "scripts": {
@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/TinyNova/elasticulize-cli#readme",
   "dependencies": {
-    "async": "^3.2.0",
-    "aws-sdk": "^2.395.0",
-    "elasticsearch": "^15.1.1",
+    "async": "^3.2.1",
+    "aws-sdk": "^2.991.0",
+    "elasticsearch": "^16.7.2",
     "http-aws-es": "^6.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "minimist": "^1.2.5",
-    "moment": "^2.22.2"
+    "moment": "^2.29.1"
   }
 }
